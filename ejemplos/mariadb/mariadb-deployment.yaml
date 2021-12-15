@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb-deployment
@@ -6,6 +6,9 @@ metadata:
     app: mariadb
     type: database
 spec:
+  selector:
+    matchLabels:
+      app: mariadb
   replicas: 1
   template:
     metadata:
@@ -21,4 +24,4 @@ spec:
               name: db-port
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: my-password
+              value: AndisO@1441

@@ -1,10 +1,12 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-deployment
   namespace: default
+  labels:
+    app: nginx
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -14,5 +16,8 @@ spec:
         app: nginx
     spec:
       containers:
-        - image:  nginx
-          name:  nginx
+      - image: nginx
+        name: nginx
+        ports:
+        - name: http
+          containerPort: 80

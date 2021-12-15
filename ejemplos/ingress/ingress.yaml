@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-name-based
@@ -10,13 +10,19 @@ spec:
     http:
       paths:
       - path: "/"
+        pathType: Prefix
         backend:
-          serviceName: frontend
-          servicePort: 80
+          service:
+            name: frontend
+            port:
+              number: 80
   - host: www.letschat.com
     http:
       paths:
       - path: "/"
+        pathType: Prefix
         backend:
-          serviceName: letschat
-          servicePort: 8080
+          service:
+            name: letschat
+            port:
+              number: 8080
